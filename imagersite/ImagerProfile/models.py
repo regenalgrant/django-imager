@@ -33,6 +33,7 @@ class ActiveUserManager(models.Manager):
 
 class ImagerProfile(models.Model):
     """Creating profile linked to user."""
+
     user = models.OneToOneField(
         User,
         related_name="profile",
@@ -53,10 +54,11 @@ class ImagerProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+
 @property
 def is_active(self):
-
-    return self.user._active
+    """This is active property."""
+    return self.user.is_active
 
 
 @receiver(post_save, sender=User)
