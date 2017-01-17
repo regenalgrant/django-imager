@@ -1,3 +1,4 @@
+"""Models."""
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -5,12 +6,11 @@ from django.dispatch import receiver
 import uuid
 
 CAMERA_TYPES = (
-    ('Nikon', 'Nikon'),
-    ('Canon', 'Canon'),
-    ('Instagram', 'Instagram'),
-    ('Mobile', 'Mobile'),
-    ('SONY', 'SONY')
+    ('canon', 'Canon'),
+    ('nikon', 'Nikon'),
+    ('sony', 'SONY')
 )
+
 
 PHOTOGRAPHY_TYPES = (
     ('Nature', 'Nature'),
@@ -32,6 +32,7 @@ class ActiveUserManager(models.Manager):
 
 
 class ImagerProfile(models.Model):
+    """Creating profile linked to user."""
     user = models.OneToOneField(
         User,
         related_name="profile",
@@ -52,9 +53,10 @@ class ImagerProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-    @property
-    def is_active(self):
-        return self.user.is_active
+@property
+def is_active(self):
+
+    return self.user._active
 
 
 @receiver(post_save, sender=User)

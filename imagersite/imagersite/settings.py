@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'imager_profile'
+    'ImagerProfile'
 ]
 
 MIDDLEWARE = [
@@ -81,9 +81,7 @@ DATABASES = {
         'USER': 'regenal',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-        'TEST': {
-            'NAME': 'test_imager'
-        }
+
 
     }
 }
