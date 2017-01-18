@@ -13,12 +13,12 @@ CAMERA_TYPES = (
 
 
 PHOTOGRAPHY_TYPES = (
-    ('Nature', 'Nature'),
-    ('Photography', 'Photograpy/Newborn'),
+    ('nature', 'Nature'),
+    ('photography', 'Photograpy/Newborn'),
     ('6 Months', '6 Months'),
-    ('BabyPics', 'Baby Pics'),
-    ('Maternity', 'Maternity'),
-    ('Babies', 'Babies')
+    ('baby Pics', 'Baby Pics'),
+    ('maternity', 'Maternity'),
+    ('babies', 'Babies')
 )
 
 
@@ -61,8 +61,8 @@ def is_active(self):
     return self.user.is_active
 
 
-# @receiver(post_save, sender=User)
-# def make_user_profile(sender, instance, **kwargs):
-#     """Instantiate a PatronProfile, connect to a new User instance, save that profile."""
-#     new_profile = ImagerProfile(user=instance)
-#     new_profile.save()
+@receiver(post_save, sender=User)
+def make_user_profile(sender, instance, **kwargs):
+    """Instantiate a PatronProfile, connect to a new User instance, save that profile."""
+    new_profile = ImagerProfile(user=instance)
+    new_profile.save()
