@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+from imagersite import (
+    home_view,
+    test-view
+    )
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$',home/$', home_view, name="home")
+    url(r'^(?P<num>\d+)/(?P<word>\w+)$', test_view,' name="test")
 ]
