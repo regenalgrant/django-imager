@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ImagerProfile',
+    'bootstrap3',
     'imagersite'
 ]
 
@@ -79,11 +80,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'imagerDB',
-        'USER': 'regenal',
+        'USER': 'os.environ["PSQL_USERNAME"]',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-
-
+        'TEST': {
+            'NAME': 'test_imager_db'
+        }
     }
 }
 

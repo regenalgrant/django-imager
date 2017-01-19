@@ -11,7 +11,6 @@ CAMERA_TYPES = (
     ('sony', 'SONY')
 )
 
-
 PHOTOGRAPHY_TYPES = (
     ('nature', 'Nature'),
     ('photography', 'Photograpy/Newborn'),
@@ -20,7 +19,6 @@ PHOTOGRAPHY_TYPES = (
     ('maternity', 'Maternity'),
     ('babies', 'Babies')
 )
-
 
 class ActiveUserManager(models.Manager):
     """Query ImagerProfile of active user."""
@@ -50,6 +48,25 @@ class ImagerProfile(models.Model):
     imager_id = models.UUIDField(default=uuid.uuid4, editable=False)
     active = ActiveUserManager()
     objects = models.Manager()
+
+customer = models.ForeignKey(ImagerProfile)
+        User,
+        related_name="User",
+        blank=True,
+        null=True
+        )
+RESERVATION = [
+    ("available", "Available"),
+    ("confirmed", "Confirmed"),
+    ("date", "Date"),
+    ("time", "time"),
+]
+status = model.CharField(
+    max_length=20
+    choices=RESERVATION,
+    default="availble"
+)
+
 
     def __str__(self):
         return self.user.username
