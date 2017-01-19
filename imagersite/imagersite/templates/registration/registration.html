@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html>
-  <head></head>
-  <body>{{ form.as_table}}
-  </body>
-</html>
+{% extends "base.html" %}
+    <h2>Registration Info Below</h2>
+    {% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register">
+    </form>
+{% endblock %}

@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^$',home/$', home_view, name="home")
     url(r'^(?P<num>\d+)/(?P<word>\w+)$', test_view,' name="test")
     url(r'^registration/', including("registration.backend.hmac.url"))
-]
+]   url(r'^login$', login, name='login'),
+    url(r'^logout$', logout, name='logout'),

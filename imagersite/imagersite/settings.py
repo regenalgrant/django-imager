@@ -127,3 +127,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#DJANGO-registration
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+#EMAIL STUFF
+#Code to run server python -m smtpd -n -c DebuggingServer 127.0.0.1:1025
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = "1025"
+
+#LOGIN/LOGOUT URLS
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

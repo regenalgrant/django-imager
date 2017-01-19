@@ -1,11 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% load static %}
+    <div class="jumbotron">
+      <div class="container">
+        <h3>
+          We <span>collect and curate</span><br> images from around the world, <br>powered by the SourceShot user community.
+        </h3>
+      </div>
+    </div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-  <body>
-  yo!.{{yo!}}
-  {{ num }} {{ owrd }}
-  </body>
-</html>
+    <div class="banner">
+      <div class="container">
+        <h3>
+          The Bottom Line.
+        </h3>
+        <p>
+          We deliver the images you create to the world.
+        </p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="container">
+        <h4>
+          Our Community Shots.
+        </h4>
+        <div class='Row'>
+          <div class='col-md-4'>
+            </div>
+          <div class='col-md-4'>
+            <img src="{% static 'images/image_1.jpg' %}" alt="My image"/>
+            </div>
+          <div class='col-md-4'>
+             </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
