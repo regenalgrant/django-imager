@@ -12,10 +12,9 @@ CAMERA_TYPES = (
 )
 
 PHOTOGRAPHY_TYPES = (
-    ('nature', 'Nature'),
-    ('photography', 'Photograpy/Newborn'),
+    ('photography', 'Photograpy'),
     ('6 Months', '6 Months'),
-    ('baby Pics', 'Baby Pics'),
+    ('newborn', 'Newborn'),
     ('maternity', 'Maternity'),
     ('babies', 'Babies')
 )
@@ -37,6 +36,7 @@ class ImagerProfile(models.Model):
         related_name="profile",
         on_delete=models.CASCADE
     )
+
     type_camera = models.CharField(default='', max_length=35, choices=CAMERA_TYPES, blank=True, null=True)
     type_photography = models.CharField(default='', max_length=35, choices=PHOTOGRAPHY_TYPES, blank=True, null=True)
     employable = models.BooleanField(default=True)
@@ -50,33 +50,31 @@ class ImagerProfile(models.Model):
     objects = models.Manager()
 
 customer = models.ForeignKey(ImagerProfile)
-        User,
-        related_name="User",
-        blank=True,
-        null=True
-        )
+    User,
+    related_name = "User",
+    blank = True,
+    null = True
+
 RESERVATION = [
     ("available", "Available"),
     ("confirmed", "Confirmed"),
     ("date", "Date"),
     ("time", "time"),
 ]
+
 status = model.CharField(
     max_length=20
     choices=RESERVATION,
     default="availble"
 )
 
-
     def __str__(self):
         return self.user.username
-
 
 @property
 def is_active(self):
     """This is active property."""
     return self.user.is_active
-
 
 @receiver(post_save, sender=User)
 def make_user_profile(sender, instance, **kwargs):

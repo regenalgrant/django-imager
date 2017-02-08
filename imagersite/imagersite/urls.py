@@ -17,8 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from imagersite import (
     home_view,
-    test-view
+    test_view,
+    login,
+    logout
+
     )
+    
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',home/$', home_view, name="home")
