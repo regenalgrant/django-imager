@@ -42,7 +42,44 @@ class ProfileTestCase(TestCase):
     #     """Testing the user is active."""
     #     self.assert_true(user.is_active)
 
-    def test_profile_str_is_user_username(self):
-        self.user.save()
-        profile = ImagerProfile.objects.get(user=self.user)
-        self.assertEqual(str(profile), self.user.username)
+        def test_profile_str_is_user_username(self):
+            self.user.save()
+            profile = ImagerProfile.objects.get(user=self.user)
+            self.assertEqual(str(profile), self.user.username)
+
+#  --------------------TESTVIEWS---------------------
+
+    def test_profile_views(self):
+        """Test profile view status code."""
+        from image_profile.view import profile_view
+        req = self.request.get("/profile")
+        self.asserTempplateUsed(response, 'imager_profile/detail.html')
+
+    def test_home_view_status(self):
+        """Test home view is assessible."""
+        from imagersite.views import home_view
+        req = self.request.get("/")
+        response = home_view(req)
+        self.assertEqual(response.status_code, 200)
+
+    def home_route_uses_right_template(self):
+        """Test that home route uses the expected template."""
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'imagersite/home.html')
+
+    def test_login_view_status(self):
+        """Test login view is accesible."""
+        from fjango.contrib.auth.views import login
+        req = self.request.get('/')
+        response = login(req)
+        self.assertTemplatedUsed(response.staus_code, 200)
+
+    def test_login_route_uses_right_template(self):
+        """Test that the login route uses the expected template."""
+        response = self.client.get('/login/')
+        self.assertTemplateUsed(response, 'registration/login.html')
+        self.assertTemplateUsed(response, 'imagersite/base.html')
+
+    def test_register_view_status(self):
+        """Test register view status code is 200."""
+        from registration
