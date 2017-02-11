@@ -91,5 +91,5 @@ bin/
 .ropeproject
 
 # otherstuff
-*/pip-selfcheck.json
+*pip-selfcheck.json
 /share
