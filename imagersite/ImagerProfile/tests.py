@@ -38,13 +38,6 @@ class ProfileTestCase(TestCase):
         self.assertTrue(hasattr(a_profile, "user"))
         self.assertIsInstance(a_profile.user, User)
 
-
-    # def test_active_user(self):
-    #     """Testing the user is active."""
-    #     self.assert_true(user.is_active)
-
     def test_profile_str_is_user_username(self):
-        self.user.save()
-        profile = ImagerProfile.objects.get(user=self.user)
-        self.assertEqual(str(profile), self.user.username)
->>>>>>> parent of cb4c0f1... writing tests for views
+        profile = ImagerProfile.objects.get(user=self.users[0])
+        self.assertEqual(str(profile), self.users[0].username)
