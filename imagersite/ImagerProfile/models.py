@@ -34,7 +34,7 @@ class ActiveUserManager(models.Manager):
 class ImagerProfile(models.Model):
     """Creating profile linked to user."""
 
-    user = models.OneToOneField(
+    user = models.OneToOneField( # Association user class and profile class
         User,
         related_name="profile",
         on_delete=models.CASCADE
