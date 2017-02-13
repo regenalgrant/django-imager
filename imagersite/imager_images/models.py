@@ -2,7 +2,7 @@
 
 
 from django.db import models
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -27,7 +27,7 @@ class Photo(models.Model):
     select_cover = models.BooleanField(default=False)
     published = models.CharField(
         max_length=7,
-        choices=PUBLISH_OPTIONS
+        choices=PUBLISH_OPTIONS,
         default='private',
         blank=True
         )
@@ -45,10 +45,9 @@ class Albums(models.Model):
         related_name="album",
         on_delete=models.CASCADE,
     )
-    photos = models.ManyToMany(
+    photos = models.ManyToManyField(
         Photo,
         related_name="album",
-        on_delete=models.CASCADE,
     )
     title = models.CharField(max_length=30, blank=True)
     description = models.CharField(blank=True)
@@ -57,7 +56,7 @@ class Albums(models.Model):
     date_published = models.DateField(auto_now_add=True)
     published = models.CharField(
         max_length=7,
-        choices=PUBLISH_OPTIONS
+        choices=PUBLISH_OPTIONS,
         default='private',
         blank=True
         )
