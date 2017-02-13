@@ -39,5 +39,6 @@ class ProfileTestCase(TestCase):
         self.assertIsInstance(a_profile.user, User)
 
     def test_profile_str_is_user_username(self):
+        """Testing profile _str_ is username."""
         profile = ImagerProfile.objects.get(user=self.users[0])
         self.assertEqual(str(profile), self.users[0].username)

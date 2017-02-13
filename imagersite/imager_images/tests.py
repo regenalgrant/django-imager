@@ -54,3 +54,16 @@ class PhotoTestCase(TestCase):
     def test_photo_exist(self):
         """Setting up that photo exist."""
         self.assertEqual(Photo.objects.count(), 1)
+
+    def test_photo_published(self):
+        """Setting that photo is published."""
+        self.assertIsNone(self.photo.date_published)
+        self.assertLess(self.photo.date_published, timezone.now())
+
+    def test_photo_is_public(self):
+        """Setting that public photo is set to private."""
+        self.assertEqual(self.photo.published, "private")
+
+    def test_photo_creation(self):
+        """Setting that photo is created."""
+        self.assertTrue(Photo.objects.count() == 0)
