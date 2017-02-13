@@ -55,10 +55,10 @@ class ImagerProfile(models.Model):
         return self.user.username
 
 
-@property
-def is_active(self):
-    """This is active property."""
-    return self.user.is_active
+    @property
+    def is_active(self):
+        """This is active property."""
+        return self.user.is_active
 
 
 @receiver(post_save, sender=User)

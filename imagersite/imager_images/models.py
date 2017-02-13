@@ -24,6 +24,7 @@ class Photo(models.Model):
     date_uploaded = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
     date_published = models.DateField(auto_now_add=True)
+    select_cover = models.BooleanField(default=False)
     published = models.CharField(
         max_length=7,
         choices=PUBLISH_OPTIONS
@@ -34,3 +35,37 @@ class Photo(models.Model):
 
     def __str__(self):
         return "{} photo has been uploaded".format(self.user)
+
+
+@python_2_unicode_compatible
+class Albums(models.Model):
+    """Creating the class called album from models.Model."""
+    user = models.OneToOneField(
+        User,
+        related_name="album",
+        on_delete=models.CASCADE,
+    )
+    photos = models.ManyToMany(
+        Photo,
+        related_name="album",
+        on_delete=models.CASCADE,
+    )
+    title = models.CharField(max_length=30, blank=True)
+    description = models.CharField(blank=True)
+    date_created = models.DateField(auto_now=True)
+    date_modified = models.DateField(auto_now=True)
+    date_published = models.DateField(auto_now_add=True)
+    published = models.CharField(
+        max_length=7,
+        choices=PUBLISH_OPTIONS
+        default='private',
+        blank=True
+        )
+
+    @property
+    def cover(self):
+        """Set image as a cover."""
+        return self.photos.filter(select_cover=True).last()
+
+    def __str__(self):
+        return "album created for {}".format(self.user.username)
