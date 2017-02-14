@@ -1,0 +1,11 @@
+[run]
+source =
+  ImagerProfile
+
+omit =
+  */migrations/*
+  */test*
+  */apps.py
+
+[report]
+show_missing = True
