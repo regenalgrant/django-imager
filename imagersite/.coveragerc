@@ -1,6 +1,7 @@
 [run]
 source =
   ImagerProfile
+  imager_images
 
 omit =
   */migrations/*
