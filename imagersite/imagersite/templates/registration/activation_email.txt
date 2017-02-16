@@ -1,5 +1,5 @@
 Click link below to activate your account:
 
-http://{{ site.domain }} {% url 'registration_activate' activation_key %}
+http://{{ site.domain }}{% url 'registration_activate' activation_key %}
 
-This page will expire in {{ expiration_days }} day{{ expiration_days|pluraize }}.
+This page will expire in {{ expiration_days }} day {{ expiration_days|pluralize }}.

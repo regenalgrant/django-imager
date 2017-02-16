@@ -63,6 +63,7 @@ class ImagerProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def make_user_profile(sender, instance, **kwargs):
-    """Instantiate a PatronProfile, connect to a new User instance, save that profile."""
-    new_profile = ImagerProfile(user=instance)
-    new_profile.save()
+    """Instantiate a ImagerProfile, connect to a new User instance, save that profile."""
+    if not ImagerProfile.objects.filter(user=instance):
+        new_profile = ImagerProfile(user=instance)
+        new_profile.save()

@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from imagersite.views import HomeView
+from django.contrib.auth import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name='homepage'),
-    url(r'^registration/', include('registration.backends.hmac.urls'))
+    url(r'^registration/', include('registration.backends.hmac.urls')),
+    url(r'^login/$', views.login, name="login")
 ]

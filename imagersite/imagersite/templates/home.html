@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block body %}
 <div>
-    <h1> Welcome to my site <h1>
-      <li class="active" role="presentation"><a class="text-uppercase" href=“{% url 'auth_login' %}”>log in </a></li>
+    <h1> Welcome to my site </h1>
+      <p class="active" role="presentation"><a href="{% url 'login' %}">LOGIN</a></p>
       <a class="btn btn-default btn-lg navbar-btn action-button" role="button" href="{% url 'registration_register' %}">SIGN UP</a>
     <h2> "Please register for the latest and greatest PhotoBook."</h2>
     <img class="vic" src="{{ pre_selected_photo }}">

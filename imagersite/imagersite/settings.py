@@ -27,7 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'regenal@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+ACCOUNT_ACTIVATION_DAYS = 2
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,3 +135,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # media files (for uploading files)
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
+
+LOGIN_REDIRECT_URL = "/"
