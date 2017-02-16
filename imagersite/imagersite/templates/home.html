@@ -2,7 +2,7 @@
 {% block body %}
 <div>
     <h1> Welcome to my site </h1>
-      <p class="active" role="presentation"><a href="{% url 'login' %}">LOGIN</a></p>
+      <p class="active"><a href="{% url 'login' %}">LOGIN</a></p>
       <a class="btn btn-default btn-lg navbar-btn action-button" role="button" href="{% url 'registration_register' %}">SIGN UP</a>
     <h2> "Please register for the latest and greatest PhotoBook."</h2>
     <img class="vic" src="{{ pre_selected_photo }}">
