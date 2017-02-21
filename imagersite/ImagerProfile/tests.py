@@ -42,5 +42,3 @@ class ProfileTestCase(TestCase):
         """Testing profile _str_ is username."""
         profile = ImagerProfile.objects.get(user=self.users[0])
         self.assertEqual(str(profile), self.users[0].username)
-
- #  ----------------Test Registration -----------------------
