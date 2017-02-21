@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import ImagerProfile
 import factory
@@ -42,3 +42,5 @@ class ProfileTestCase(TestCase):
         """Testing profile _str_ is username."""
         profile = ImagerProfile.objects.get(user=self.users[0])
         self.assertEqual(str(profile), self.users[0].username)
+
+ #  ----------------Test Registration -----------------------

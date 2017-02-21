@@ -9,7 +9,7 @@ class HomeView(TemplateView): # ensure update template path
         context = super(HomeView, self).get_context_data(**kwargs)
         try:
             search = Photo.objects.filter(published="public").order_by('?')[0] # filtering for something
-            context['pre_selected_photo'] = search # adding the seach to my key dictionary
+            context['pre_selected_photo'] = search # adding the search to my key dictionary
         except IndexError: # using as default
             context['pre_selected_photo'] = "/static/images/vic.jpg"
         return context
