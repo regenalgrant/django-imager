@@ -2,6 +2,7 @@
 source =
   ImagerProfile
   imager_images
+  imagersite
 
 omit =
   */migrations/*
