@@ -6,7 +6,10 @@ source =
 
 omit =
   */migrations/*
-  */test*
+  */test.py
+  */tests.py
+  manage.py
+  imagersite/wsgi.py
   */apps.py
 
 [report]
