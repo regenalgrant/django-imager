@@ -37,6 +37,17 @@ class FrontEndTestCase(TestCase):
         response = self.client.get('/login/')
         self.assertTrue(response.status_code == 200)
 
+class RegistrationTestCase(TestCase):
+    """Setup Registration test case."""
+    def setUp(self):
+        """Set up response for registration test case."""
+        self.response = self.client.post('/accounts/register/', {
+            'username': 'regenal',
+            'email': 'regenal@gmail.com',
+            'password1': '1qaz2wsx',
+            'password2': '1qaz2wsx'
+            })
+
     def test_registered_new_user(self):
         """Test a new user is created."""
         self.assertFalse(User.objects.count() == 0)
