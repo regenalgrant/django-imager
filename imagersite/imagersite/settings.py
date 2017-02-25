@@ -85,12 +85,13 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'imagerDB',
-        'USER': 'regenal',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'TEST':{
-            'NAME': 'test_db'
+        'NAME': os.environ.get('DB_NAME', 'imagerDB'),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASS', ''),
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+        'TEST': {
+            'NAME': 'test_imager'
         }
     }
 }
@@ -134,7 +135,29 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # media files (for uploading files)
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
+MEDIA_URL = '/MEDIA/'
 
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+
+#DJANGO-registration
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+#EMAIL STUFF
+
+if DEBUG is True:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'regenal@gmail.com'
+
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS", "")
+
+#LOGIN/LOGOUT URLS
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

@@ -1,15 +1,23 @@
+from random import randint
+from django.shortcuts import render
 from imager_images.models import Photo
-from django.views.generic.base import TemplateView
+from django.conf import settings
 
+from django.views.generic import TemplateView
 
 class HomeView(TemplateView): # ensure update template path
     """Creating HomeView template."""
+
     template_name = "home.html"
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        try:
-            search = Photo.objects.filter(published="public").order_by('?')[0] # filtering for something
-            context['pre_selected_photo'] = search # adding the search to my key dictionary
-        except IndexError: # using as default
-            context['pre_selected_photo'] = "/static/images/vic.jpg"
+
+    def get_context_data(self):
+        """View for the home page."""
+        photos = Photo.objects.all()
+        if photos:
+            idx = randint(0, photos.count() - 1)
+            random_picture = photos[idx]
+            img_url = random_picture.image_file.url
+        else:
+            img_url = settings.STATIC_URL + 'images/football.jpg'
+        context = {'img_url': img_url}
         return context

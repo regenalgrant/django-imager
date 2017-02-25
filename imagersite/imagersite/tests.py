@@ -44,14 +44,10 @@ class RegistrationTestCase(TestCase):
         self.response = self.client.post('/registration/register/', {
             'username': 'regenal',
             'email': 'regenal@gmail.com',
-            'password1': '1qaz2wsx',
-            'password2': '1qaz2wsx'
+            'password1': '!QAZZ12344',
+            'password2': '!QAZZ12344'
             }, follow=True)
-        self.new_user = User.objects.create_user(
-            username = 'regenal',
-            email = 'regenal@gmail.com',
-            password = 'zaq14321'
-            )
+
 
     def test_registered_new_user(self):
         """Test a new user is created."""
@@ -72,7 +68,7 @@ class RegistrationTestCase(TestCase):
     def test_registered_user_is_not_active(self):
         """Test a newly registered user is inactive."""
         self.client = User.objects.first()
-        self.assertTrue(self.client.is_active) # ---not working, no attribute is_active
+        self.assertFalse(self.client.is_active) # ---not working, no attribute is_active
 
 
     def test_login_route_redirects(self):

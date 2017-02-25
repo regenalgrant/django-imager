@@ -51,6 +51,28 @@ class ImagerProfile(models.Model):
     active = ActiveUserManager()
     objects = models.Manager()
 
+
+    def __str__(self):
+        return """Username: {Username}
+                  Camera: {Camera}
+                  Photography Type: {PhotographyType}
+                  Employable?: {Employable}
+                  Address: {Address}
+                  About Me: {AboutMe}
+                  Website: {Website}
+                  Phone: {Phone}
+                  Travel Radius: {TravelRadius}""".format(
+            Username=self.user.username,
+            Camera=self.type_camera,
+            PhotographyType=self.type_photography,
+            Employable=self.employable,
+            Address=self.address,
+            AboutMe=self.bio,
+            Website=self. personal_website,
+            Phone=self.phone_number,
+            TravelRadius=self.travel_radius)
+
+
     def __str__(self):
         return self.user.username
 
@@ -64,6 +86,7 @@ class ImagerProfile(models.Model):
 @receiver(post_save, sender=User)
 def make_user_profile(sender, instance, **kwargs):
     """Instantiate a ImagerProfile, connect to a new User instance, save that profile."""
-    if not ImagerProfile.objects.filter(user=instance):
+
+    if kwargs["created"]:
         new_profile = ImagerProfile(user=instance)
         new_profile.save()

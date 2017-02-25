@@ -45,11 +45,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='albums',
             name='photos',
-            field=models.ManyToManyField(related_name='album', to='imager_images.Photo'),
+            field=models.ManyToManyField(related_name='albums', to='imager_images.Photo'),
         ),
         migrations.AddField(
             model_name='albums',
             name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='album', to=settings.AUTH_USER_MODEL),
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='albums', to=settings.AUTH_USER_MODEL),
         ),
     ]

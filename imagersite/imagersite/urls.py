@@ -14,14 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
+from django.views.static import serve
+from django.conf.urls.static import static
+from imagersite import settings
 from imagersite.views import HomeView
-from django.contrib.auth import views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', HomeView.as_view(), name='homepage'),
+    url(r'^$', HomeView.as_view(), name="home"),
     url(r'^registration/', include('registration.backends.hmac.urls')),
-    url(r'^login/$', views.login, name="login"),
-    url(r'^logout/$', views.logout, name="logout")
+    url(r'^login/$', login, name='login'),
+    url(r'^logout/$', logout, name='logout'),
+    url(r'^images/', include('imager_images.urls')),
+    url(r'^profile/', include("ImagerProfile.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT)
