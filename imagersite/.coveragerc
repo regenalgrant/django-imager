@@ -1,10 +1,15 @@
 [run]
 source =
   ImagerProfile
+  imager_images
+  imagersite
 
 omit =
   */migrations/*
-  */test*
+  */test.py
+  */tests.py
+  manage.py
+  imagersite/wsgi.py
   */apps.py
 
 [report]

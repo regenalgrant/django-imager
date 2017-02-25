@@ -23,6 +23,9 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+bin/
+include/
+pyvenv.cfg
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -89,6 +92,7 @@ bin/
 
 # Rope project settings
 .ropeproject
+<<<<<<< HEAD
 
 # otherstuff
 *pip-selfcheck.json

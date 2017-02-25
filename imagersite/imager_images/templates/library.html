@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{profile.user}}'s Library{% endblock %}
+
+{% block content %}
+    <div class="banner">
+        <div class="container">
+            <h3>
+            </h3>
+            <p>
+                We.
+            </p>
+            <p>
+                Your Albums
+            </p>
+            <div class='Row'>
+                {% for albums in albums %}
+                <div class='col-md-4'>
+                    <img src="{{ albums.cover_image.url }}"/>
+                </div>
+                <p>
+                    {{ albums.description }}
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="cards">
+      <div class="container">
+        <h4>
+          Your SourceShots
+        </h4>
+        <div class='Row'>
+          <div class='col-md-4'>
+            </div>
+          <div class='col-md-4'>
+            <img src="{{ img_url }}"/>
+            <img src="{% static 'images/reggie copy.jpg' %}" alt="My image"/>
+            </div>
+          <div class='col-md-4'>
+             </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

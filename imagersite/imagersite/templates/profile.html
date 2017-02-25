@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>Your profile</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h3 class="brand-heading">
+                        <br>
+                        This is {{ profile.user.username }}'s Profile</h3>
+                        {% if profile %}
+                        <ul>
+                            <li>Username: {{profile.user.username}}</li>
+
+                            <li>number of public images: {{ public_images }}</li>
+
+                            {% if user == profile.user %}
+                            <li>number of private images: {{ private_images }}</li>
+                            {% endif %}
+                            <li>address: {{ profile.address }}</li>
+
+                            <li>bio: {{ profile.bio }}</li>
+
+                            <li>website: <a href="{{ profile.personal_website }}">{{ profile.personal_website }}</a></li>
+
+                            <li>employable: {{ profile.employable }}</li>
+
+                            <li>travel radius: {{ profile.travel_radius }}</li>
+
+                            <li>phone number: {{ profile.phone_number }}</li>
+
+                            <li>camera type: {{ profile.type_camera }}</li>
+
+                            <li>type of photography: {{ profile.type_photography }}</li>
+
+                        </ul>
+                        {% else %}
+                        <h3>{{ error }}</h3>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

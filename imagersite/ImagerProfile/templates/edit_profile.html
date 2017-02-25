@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>Edit Profile</title>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="banner">
+      <div class="container">
+        <h3>
+          Edit Your Profile.
+        </h3>
+        <p>
+        .
+        </p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="container">
+        <h4>
+        </h4>
+        <div class='Row'>
+            </div>
+              <form method="POST" class="edit-albums-form" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit">Edit</button>
+            </div>
+             </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
