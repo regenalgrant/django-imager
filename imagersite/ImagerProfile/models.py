@@ -11,16 +11,13 @@ CAMERA_TYPES = (
     ('sony', 'Sony')
 )
 
-
 PHOTOGRAPHY_TYPES = (
-    ('Nature', 'Nature'),
-    ('Photography', 'Photograpy/Newborn'),
+    ('photography', 'Photograpy'),
     ('6 Months', '6 Months'),
-    ('BabyPics', 'Baby Pics'),
-    ('Maternity', 'Maternity'),
-    ('Babies', 'Babies')
+    ('newborn', 'Newborn'),
+    ('maternity', 'Maternity'),
+    ('babies', 'Babies')
 )
-
 
 class ActiveUserManager(models.Manager):
     """Query ImagerProfile of active user."""
@@ -39,6 +36,7 @@ class ImagerProfile(models.Model):
         related_name="profile",
         on_delete=models.CASCADE
     )
+
     type_camera = models.CharField(default='', max_length=35, choices=CAMERA_TYPES, blank=True, null=True)
     type_photography = models.CharField(default='', max_length=35, choices=PHOTOGRAPHY_TYPES, blank=True, null=True)
     employable = models.BooleanField(default=True)
@@ -73,20 +71,16 @@ class ImagerProfile(models.Model):
             TravelRadius=self.travel_radius)
 
 
-    def __str__(self):
-        return self.user.username
-
-
     @property
     def is_active(self):
         """This is active property."""
         return self.user.is_active
 
 
-@receiver(post_save, sender=User)
-def make_user_profile(sender, instance, **kwargs):
-    """Instantiate a ImagerProfile, connect to a new User instance, save that profile."""
+    @receiver(post_save, sender=User)
+    def make_user_profile(sender, instance, **kwargs):
+        """Instantiate a ImagerProfile, connect to a new User instance, save that profile."""
 
-    if kwargs["created"]:
-        new_profile = ImagerProfile(user=instance)
-        new_profile.save()
+        if kwargs["created"]:
+            new_profile = ImagerProfile(user=instance)
+            new_profile.save()

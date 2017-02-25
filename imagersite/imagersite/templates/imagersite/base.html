@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+</head>
+<body>
+    <div class="header">
+      <div class="container">
+        <div class='row'>
+          <div class='col-md-3'>
+          {% if user.is_authenticated %}
+            <h1>
+            {{ user }}
+            </h1>
+          {% endif %}
+          </div>
+          <div class='col-md-9'>
+            <ul class='nav nav-tabs pull-right'>
+              <li role='presentation'><a href='{% url "home" %}'>Home</a></li>
+              {% if user.is_authenticated %}
+                <li role='presentation'><a href='{% url "logout" %}'>Logout</a></li>
+              {% else %}
+                <li role='presentation'><a href='{% url "login" %}'>Login</a></li>
+                <li role='presentation'><a href='{% url "registration_register" %}'>Register</a></li>
+              {% endif %}
+              <li role='presentation'><a href='#'>Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+{% block content %}
+{% endblock %}
+    <div class="footer">
+      <div class="container">
+        <div class='row'>
+          <div class='col-md-12'>
+            <h5>SourceShot.</h5>
+            <adress>
+              5th Avenue<br>
+              Seattle, WA<br>
+              (206) 555 - 555<br>
+             <adress>
+             <img src='https://s3.amazonaws.com/codecademy-content/projects/headlines/email.svg'>
+               <img src='https://s3.amazonaws.com/codecademy-content/projects/headlines/fb.svg'>
+               <img src='https://s3.amazonaws.com/codecademy-content/projects/headlines/twitter.svg'>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

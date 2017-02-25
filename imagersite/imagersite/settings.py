@@ -25,7 +25,7 @@ SECRET_KEY = 'wxqjet)gsodgm97aubsw4nn#ps%ui#z40utk9h4z)u_xb4hse='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ImagerProfile',
     'imager_images',
+    'bootstrap3',
     'imagersite'
 ]
 
@@ -145,6 +146,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 #EMAIL STUFF
 
+
 if DEBUG is True:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
@@ -157,6 +159,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'regenal@gmail.com'
 
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS", "")
+
 
 #LOGIN/LOGOUT URLS
 LOGIN_REDIRECT_URL = 'home'
