@@ -18,6 +18,6 @@ class HomeView(TemplateView): # ensure update template path
             random_picture = photos[idx]
             img_url = random_picture.image_file.url
         else:
-            img_url = settings.STATIC_URL + 'images/football.jpg'
+            img_url = settings.STATIC_URL + 'images/reggie copy.jpg'
         context = {'img_url': img_url}
         return context
